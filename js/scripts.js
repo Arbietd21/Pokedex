@@ -1,5 +1,5 @@
-alert ('Hello World')
+alert ('Hello World');
 
-let favoriteFood = 'Steak'
+let favoriteFood = 'Steak';
 
-document.write(favoriteFood)
+document.write(favoriteFood);
