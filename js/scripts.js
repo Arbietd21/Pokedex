@@ -38,4 +38,12 @@ let pokemonList = [
 
 ];
 
-console.log(pokemonList[1].type[1]);
+let user = {name: 'aj', height: 5.5};
+
+if (user.height < 5.5 && user.height > 5.1){
+    console.log(`they're average height`)
+}else if (user.height < 5.1){
+    console.log(`they're short`)
+}else if (user.height >= 5.5){
+    console.log(`they're tall`)
+}
