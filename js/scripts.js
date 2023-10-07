@@ -38,12 +38,12 @@ let pokemonList = [
 
 ];
 
-let user = {name: 'aj', height: 5.5};
-
-if (user.height < 5.5 && user.height > 5.1){
-    console.log(`they're average height`)
-}else if (user.height < 5.1){
-    console.log(`they're short`)
-}else if (user.height >= 5.5){
-    console.log(`they're tall`)
+for (i = 0; pokemonList.length; i++){
+    if (pokemonList[i].height >= 1.5){
+        document.write(`${pokemonList[i].name} (${pokemonList[i].height}m) is big!` + '<br>' + '<br>');
+    } else if (pokemonList[i].height < 1.5 && pokemonList[i].height >= 0.7){
+        document.write(`${pokemonList[i].name} (${pokemonList[i].height}m) is averaged sized.` + '<br>' + '<br>');
+    } else {
+        document.write(`${pokemonList[i].name} (${pokemonList[i].height}m) is small` + '<br>' + '<br>');
+    }
 }
