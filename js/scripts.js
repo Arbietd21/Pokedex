@@ -1,55 +1,69 @@
-let pokemonList = [
+let pokemonRepository = (function() {
 
-    {name: 'Bulbasaur',
-    height: 0.7,
-    type: 'grass'},
+    let pokemonList = [
 
-    {name: 'Ivysaur',
-    height: 1,
-    type: ['grass', 'poison']},
+        {name: 'Bulbasaur',
+        height: 0.7,
+        type: 'grass'},
 
-    {name: 'Venasaur',
-    height: 2,
-    type: 'grass'},
+        {name: 'Ivysaur',
+        height: 1,
+        type: ['grass', 'poison']},
 
-    {name: 'Charmander',
-    height: 0.6,
-    type: 'fire'},
+        {name: 'Venasaur',
+        height: 2,
+        type: 'grass'},
 
-    {name: 'Charmeleon',
-    height: 1.1,
-    type: 'fire'},
+        {name: 'Charmander',
+        height: 0.6,
+        type: 'fire'},
 
-    {name: 'Charizard',
-    height: 1.7,
-    type: 'dragon'},
+        {name: 'Charmeleon',
+        height: 1.1,
+        type: 'fire'},
 
-    {name: 'Squirtle',
-    height: 0.5,
-    type: 'water'},
+        {name: 'Charizard',
+        height: 1.7,
+        type: 'dragon'},
 
-    {name: 'Wartortle',
-    height: 1,
-    type: 'water'},
+        {name: 'Squirtle',
+        height: 0.5,
+        type: 'water'},
 
-    {name: 'Blastoise',
-    height: 1.6,
-    type: 'water'},
+        {name: 'Wartortle',
+        height: 1,
+        type: 'water'},
 
-];
+        {name: 'Blastoise',
+        height: 1.6,
+        type: 'water'},
 
-// pokemonList.forEach(function(pokemon) {
-//     if (pokemon.height <= 0.7) {
-//         document.write(`${pokemon.name} is small` + `<br>` + `<br>`);
-//     } else if (pokemon.height > 0.7 && pokemon.height < 1.4) {
-//         document.write(`${pokemon.name} is average sized` + `<br>` + `<br>`);
-//     } else {
-//         document.write(`${pokemon.name} is big!` + `<br>` + `<br>`);
-//     }
-// });
+    ];
 
-pokemonList.forEach(pokemon => {
-    if(pokemon.height < 1) {document.write(pokemon.name + `is small` + `<br>` + `<br>`)
+    function add(pokemon) {
+        pokemonList.push(pokemon);
+      }
+
+    function getAll() {
+        return pokemonList;
+    }
+
+    return {
+        getAll: getAll,
+        add: add
+    };
+
+})();
+
+
+
+pokemonRepository.getAll().forEach(function(pokemon) {
+    if (pokemon.height <= 0.7) {
+        document.write(`${pokemon.name} is small` + `<br>` + `<br>`);
+    } else if (pokemon.height > 0.7 && pokemon.height < 1.4) {
+        document.write(`${pokemon.name} is average sized` + `<br>` + `<br>`);
+    } else {
+        document.write(`${pokemon.name} is big!` + `<br>` + `<br>`);
     }
 });
 
