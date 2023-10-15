@@ -1,5 +1,7 @@
+//repository for pokemonList
 let pokemonRepository = (function() {
 
+    //array of pokemon
     let pokemonList = [
 
         {name: 'Bulbasaur',
@@ -40,17 +42,46 @@ let pokemonRepository = (function() {
 
     ];
 
+    //add pokemon to array
     function add(pokemon) {
         pokemonList.push(pokemon);
-      }
+    }
 
+    //access the array    
     function getAll() {
         return pokemonList;
     }
 
+    function addListItem(pokemon) {
+        //selects the <ul> on the html page
+        let pokemonlist = document.querySelector('.pokemon-list');
+        //adds and <li> element
+        let listpokemon = document.createElement('li');
+        //adds <button> element
+        let button = document.createElement('button');
+        //sets the pokemons name as the text for the button
+        button.innerText = pokemon.name;
+        //adds 'button-class' to the <button> that you added
+        //used for css styling
+        button.classList.add('button-class');
+        //puts the <button> inside of any <li> elements
+        listpokemon.appendChild(button);
+        //puts the <li> element inside for the <ul> in the html page
+        pokemonlist.appendChild(listpokemon);
+        //event listener for any button clicks
+        button.addEventListener('click', function () {
+            showDetails(pokemon.type)
+        })
+    }
+    //called in the eventListener when button is clicked
+    function showDetails(pokemon){
+        console.log(pokemon)
+    }
+
     return {
         getAll: getAll,
-        add: add
+        add: add,
+        addListItem: addListItem,
     };
 
 })();
@@ -58,12 +89,6 @@ let pokemonRepository = (function() {
 
 
 pokemonRepository.getAll().forEach(function(pokemon) {
-    if (pokemon.height <= 0.7) {
-        document.write(`${pokemon.name} is small` + `<br>` + `<br>`);
-    } else if (pokemon.height > 0.7 && pokemon.height < 1.4) {
-        document.write(`${pokemon.name} is average sized` + `<br>` + `<br>`);
-    } else {
-        document.write(`${pokemon.name} is big!` + `<br>` + `<br>`);
-    }
+    pokemonRepository.addListItem(pokemon);
 });
 
