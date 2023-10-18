@@ -2,45 +2,8 @@
 let pokemonRepository = (function() {
 
     //array of pokemon
-    let pokemonList = [
-
-        {name: 'Bulbasaur',
-        height: 0.7,
-        type: 'grass'},
-
-        {name: 'Ivysaur',
-        height: 1,
-        type: ['grass', 'poison']},
-
-        {name: 'Venasaur',
-        height: 2,
-        type: 'grass'},
-
-        {name: 'Charmander',
-        height: 0.6,
-        type: 'fire'},
-
-        {name: 'Charmeleon',
-        height: 1.1,
-        type: 'fire'},
-
-        {name: 'Charizard',
-        height: 1.7,
-        type: 'dragon'},
-
-        {name: 'Squirtle',
-        height: 0.5,
-        type: 'water'},
-
-        {name: 'Wartortle',
-        height: 1,
-        type: 'water'},
-
-        {name: 'Blastoise',
-        height: 1.6,
-        type: 'water'},
-
-    ];
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     //add pokemon to array
     function add(pokemon) {
@@ -69,26 +32,70 @@ let pokemonRepository = (function() {
         //puts the <li> element inside for the <ul> in the html page
         pokemonlist.appendChild(listpokemon);
         //event listener for any button clicks
-        button.addEventListener('click', function () {
-            showDetails(pokemon.type)
+        button.addEventListener('click', function (event) {
+            showDetails(pokemon)
+        });
+    }
+  
+    function loadList() {
+        //fetches info from apiUrl (defined above) //.then initiates promise
+        return fetch(apiUrl).then(function (response) {
+            //.json takes data from api and turns it into objects for js to read
+            return response.json();
+        //initiates another promise now that the api data is readable   
+        }).then(function (json) {
+            //makes a forEach loop for the data located in the .result of the api
+            json.results.forEach(function (item) {
+                //make a pokemon(variable used) fom each object
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                //function created earlier in the repository
+                add(pokemon);
+            });
+        }).catch(function (e) {
+          console.error(e);
         })
     }
-    //called in the eventListener when button is clicked
-    function showDetails(pokemon){
-        console.log(pokemon)
+
+    function loadDetails(item) {
+        //refers to the detailsUrl defined above //item = each pokemon listed
+        let url = item.detailsUrl;
+        //fetches the api accessed with the url variable defined above
+        return fetch(url).then(function (response) {
+            //makes the api data readable for js
+            return response.json();
+        //pulls the details from each pokemon using the readable data    
+        }).then(function(details) {
+            item.imageUrl = details.sprites.front_default;
+            item.height = details.height;
+            item.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        })
+    }
+
+    function showDetails(pokemon) {
+        pokemonRepository.loadDetails(pokemon).then(function (){
+            console.log(pokemon)
+        });
     }
 
     return {
         getAll: getAll,
         add: add,
         addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails,
+        showDetails: showDetails,
     };
 
 })();
 
 
-
+pokemonRepository.loadList().then(function () {
 pokemonRepository.getAll().forEach(function(pokemon) {
     pokemonRepository.addListItem(pokemon);
 });
-
+});
