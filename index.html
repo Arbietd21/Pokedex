@@ -8,9 +8,17 @@
 </head>
 <body>
 
-    <h1>Pokedex</h1>
+    <div id="pokedex">
+        <h1>Pokedex</h1>
+        <ul class="pokemon-list"></ul>
+    </div>
 
-    <ul class="pokemon-list"></ul>
+    <div id="modal-container">
+        <div class="modal">
+            <h1 class="pokemon-name">Pokemon Name</h1>
+            <p class="pokemon-height">Height:</p>
+        </div>
+    </div>
 
     <script src="js/fetch-polyfill.js"></script>
     <script src="js/promise-polyfill.js"></script>
