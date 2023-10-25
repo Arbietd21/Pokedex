@@ -87,6 +87,7 @@ let pokemonRepository = (function() {
         let modalBody = $('.modal-body');
         let modalHeader = $('.modal-header');
         let modalTitle = $('.modal-title');
+        let modalContainer = $('#modal-container')
 
         modalTitle.empty();
         modalBody.empty();
@@ -104,6 +105,10 @@ let pokemonRepository = (function() {
         modalBody.append(imageElementBack);
         modalBody.append(pokemonHeight);
         modalBody.append(pokemonWeight);
+
+        modalContainer.on('click', modalContainer.addClass('modal(close)'));
+
+
     }
 
     function showDetails(pokemon) {
