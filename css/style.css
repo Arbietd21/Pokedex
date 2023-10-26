@@ -2,3 +2,32 @@
     box-sizing: border-box;
     text-align: center;
 }
+
+button {
+    width: 100%;
+};
+
+#pokedex {
+    display: inline-block;
+}
+
+#pokedex-title {
+    margin-top: 25px;
+}
+
+.pokemon-list {
+    padding-left: 75px;
+    padding-right: 75px;
+}
+
+.btn {
+    height: 50px;
+}
+
+.btn::first-letter {
+    text-transform: capitalize;
+}
+
+.modal-title::first-letter {
+    text-transform: capitalize;
+}
