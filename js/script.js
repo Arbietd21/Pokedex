@@ -106,8 +106,11 @@ let pokemonRepository = (function() {
         modalBody.append(pokemonHeight);
         modalBody.append(pokemonWeight);
 
-        modalContainer.on('click', modalContainer.addClass('modal(close)'));
-
+        modalContainer.on('click', function() {
+            modalContainer.addClass('modal(close)')
+        });
+    ;
+    
 
     }
 
