@@ -1,0 +1,1 @@
+//click on a pokemon's name to get details and an image of the pokemon
